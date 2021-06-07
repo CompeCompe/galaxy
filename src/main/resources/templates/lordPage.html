@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+	<meta charset="UTF-8">
+	<title>Lords</title>
+</head>
+<body>
+<div style="text-align: center">
+	<h2>Страница управления лордами</h2>
+</div>
+<div style="text-align: center">
+	<p>Создать нового лорда</p>
+	<form th:action="@{/createLord}" th:object="${lord}" method="post">
+		<label for="name">Имя</label>
+		<input type="text" th:field="*{name}" id="name">
+		<label for="age">Возраст</label>
+		<input id="age" type="number" th:field="*{age}" min="0">
+		<input type="submit" value="Создать">
+	</form>
+</div>
+<div style="text-align: center">
+	<table>
+		<tr>
+			<td>
+				<form th:action="@{/main}" method="post">
+					<input type="submit" value="Вернутся на главную">
+				</form>
+			</td>
+			<td>
+				<form th:action="@{/showAllLords}" method="post">
+					<input type="submit" value="Показать всех лордов">
+				</form>
+			</td>
+			<td>
+				<form th:action="@{/showUnemployedLords}" method="post">
+					<input type="submit" value="Показать безработных лордов">
+				</form>
+			</td>
+			<td>
+				<form th:action="@{/showYoungerLords}" method="post">
+					<input type="submit" value="Показать 10 самых молодых">
+				</form>
+			</td>
+		</tr>
+	</table>
+
+</div>
+	<p>Список лордов</p>
+	<table>
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Age</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="lord : ${lords}">
+				<td th:text="${lord.name}"></td>
+				<td th:text="${lord.age}"></td>
+			</tr>
+		</tbody>
+	</table>
+
+</body>
+</html>

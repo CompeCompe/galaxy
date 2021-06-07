@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+	<meta charset="UTF-8">
+	<title>Lords</title>
+</head>
+<body>
+<div style="text-align: center">
+	<h2>Страница управления планетами</h2>
+</div>
+<div style="text-align: center">
+	<p>Создать новую планету</p>
+	<form th:action="@{/createPlanet}" th:object="${planet}" method="post">
+		<label for="name">Название</label>
+		<input type="text" th:field="*{name}" id="name">
+		<label for="lord">Повелитель</label>
+		<select id="lord" th:field="*{lord}">
+			<option value="0"></option>
+			<option th:each="lord : ${lords}" th:value="${lord.id}" th:text="${lord.name}"></option>
+		</select>
+		<input type="submit" value="Создать">
+	</form>
+</div>
+<div>
+	<form th:action="@{/main}" method="post">
+		<input type="submit" value="Вернутся на главную">
+	</form>
+	<p>Список планет</p>
+	<table>
+		<thead>
+		<tr>
+			<th>Название</th>
+			<th>Повелитель</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr th:each="planet : ${planets}">
+			<td th:text="${planet.name}"></td>
+			<td th:text="${planet.lord?.name}"></td>
+			<td><a th:href="@{planet-update/{id}(id=${planet.id})}">Изменить повелителя</a></td>
+			<td><a th:href="@{planet-delete/{id}(id=${planet.id})}">Уничтожить</a></td>
+		</tr>
+		</tbody>
+	</table>
+</div>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+	<meta charset="UTF-8">
+	<title>Galaxy</title>
+</head>
+<body>
+<div style="text-align: center">
+	<h2>Добро пожаловать в систему Бесплатной Организации Галактики</h2>
+</div>
+<div>
+	<table>
+		<tr>
+			<td>
+				<form th:action="@{/planets}" method="post">
+					<input type="submit" value="Управлять планетами">
+				</form>
+			</td>
+			<td>
+				<form th:action="@{/lords}" method="post">
+					<input type="submit" value="Управлять лордами">
+				</form>
+			</td>
+		</tr>
+	</table>
+</div>
+</body>
+</html>

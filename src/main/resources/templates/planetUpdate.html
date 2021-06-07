@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+	<meta charset="UTF-8">
+	<title>Назначить планете другого повелителя</title>
+</head>
+<body>
+<div style="text-align: center">
+	<p>Назначить нового повелителя</p>
+	<form th:action="@{/createPlanet}" th:object="${planet}" method="post">
+		<label for="name">Название</label>
+		<input readonly type="text" th:field="*{name}" id="name">
+		<label for="lord">Повелитель</label>
+		<select id="lord" th:field="*{lord}">
+			<option value="0"></option>
+			<option th:each="lord : ${lords}" th:value="${lord.id}" th:text="${lord.name}"></option>
+		</select>
+		<input type="submit" value="Сохранить">
+	</form>
+	<form th:action="@{/main}" method="post">
+		<input type="submit" value="Вернутся на главную">
+	</form>
+</div>
+</body>
+</html>
